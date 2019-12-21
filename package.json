@@ -1,0 +1,34 @@
+{
+    "name": "stumble-on",
+    "version": "1.0.0",
+    "description": "A full-stack TypeScript project for categorizing where your stuff is around the house.",
+    "main": "index.js",
+    "scripts": {
+        "dev": "next",
+        "build": "next build",
+        "start": "next start"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/mratsamy/stumble-on.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "NOLICENSE",
+    "bugs": {
+        "url": "https://github.com/mratsamy/stumble-on/issues"
+    },
+    "homepage": "https://github.com/mratsamy/stumble-on#readme",
+    "dependencies": {
+        "apollo-server-micro": "^2.9.14",
+        "next": "^9.1.6",
+        "react": "^16.12.0",
+        "react-dom": "^16.12.0"
+    },
+    "devDependencies": {
+        "@types/node": "^12.12.21",
+        "typescript": "^3.7.3",
+        "@types/next": "^9.0.0",
+        "@types/react": "^16.9.16"
+    }
+}

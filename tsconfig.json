@@ -1,0 +1,24 @@
+{
+    "compilerOptions": {
+        "target": "es2016",
+        "baseUrl": ".",
+        "paths": {
+            "~components/*": ["components/*"], // this is only for VSC type checking, actual settings in next.config.js
+            "~graphql/*": ["graphql/*"]
+        },
+        "lib": ["dom", "dom.iterable", "esnext"],
+        "allowJs": true,
+        "skipLibCheck": true,
+        "strict": false,
+        "forceConsistentCasingInFileNames": true,
+        "noEmit": true,
+        "esModuleInterop": true,
+        "module": "esnext",
+        "moduleResolution": "node",
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+        "jsx": "preserve"
+    },
+    "exclude": ["node_modules"],
+    "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
+}
