@@ -15,6 +15,6 @@ const context = ({ request }: { request: NextApiRequest }) => {
     // return { user }
 }
 
-const apolloServer = new ApolloServer({ typeDefs, resolvers, context })
+const apolloServer = new ApolloServer({ typeDefs, resolvers })
 
 export default apolloServer
