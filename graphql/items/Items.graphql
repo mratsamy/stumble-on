@@ -1,0 +1,40 @@
+type Item {
+    _id: ID!
+    name: String!
+    description: String!
+    expirationDate: Date
+    amount: Int
+    location: Location
+    measurementType: String
+    # categories: [String]!
+    almostEmpty: Boolean!
+    createdAt: Date
+    updatedAt: Date
+}
+
+input ItemInput {
+    _id: ID
+    name: String!
+    description: String!
+    expirationDate: Date
+    amount: Int
+    location: Location
+    measurementType: String
+    # categories: [String]!
+    almostEmpty: Boolean!
+    createdAt: Date
+    updatedAt: Date
+}
+
+type ItemOutput {
+    item: Item
+    query: Query
+}
+
+Query {
+    items: [Item]!
+}
+
+Mutation {
+    addItem(item: ItemInput): ItemOutput
+}
