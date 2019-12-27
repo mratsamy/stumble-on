@@ -3,4 +3,9 @@ module.exports = {
     moduleNameMapper: {
         "~(.*)$": "<rootDir>/$1",
     },
+    setupFiles: ["dotenv/config"],
+    transform: {
+        "\\.(graphql|gql)$": "jest-transform-graphql",
+        ".*": "babel-jest",
+    },
 }

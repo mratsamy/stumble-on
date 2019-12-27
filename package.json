@@ -8,7 +8,7 @@
         "build": "next build",
         "start": "next start",
         "test": "jest",
-        "test:watch": "jest --watch"
+        "test:watch": "jest --watchAll"
     },
     "repository": {
         "type": "git",
@@ -46,7 +46,12 @@
         "@types/next": "^9.0.0",
         "@types/node": "^12.12.21",
         "@types/react": "^16.9.16",
+        "babel-jest": "^24.9.0",
+        "graphql": "^14.5.8",
+        "graphql-tools": "^4.0.6",
         "jest": "^24.9.0",
+        "jest-transform-graphql": "^2.1.0",
+        "mongodb-memory-server": "^6.1.1",
         "typescript": "^3.7.3"
     }
 }

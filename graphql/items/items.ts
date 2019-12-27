@@ -15,7 +15,17 @@ export const ItemsSchema = new Schema(
             minlength: 2,
         },
         description: String,
-        expirationDate: {},
+        expirationDate: Date,
+        count: {
+            type: Number,
+            required: true,
+            min: [0, "Can't have negative amounts"],
+            validate: {
+                validator(value) {
+                    return Number.isInteger(value)
+                },
+            },
+        },
         amount: {
             type: Number,
             required: true,
@@ -30,14 +40,14 @@ export const ItemsSchema = new Schema(
             required: false,
             uppercase: true,
             validate: {
-                validator(value: string) {
+                validator(value) {
                     return Object.keys(MeasurementType).includes(value.toUpperCase())
                 },
             },
         },
         almostEmpty: Boolean,
     },
-    {}
+    { timestamps: true }
 )
 
 export default mongoose.models.items || mongoose.model("items", ItemsSchema)

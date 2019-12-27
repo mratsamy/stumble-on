@@ -1,3 +1,10 @@
+enum MeasurementType {
+    OZ
+    FL_OZ
+    ML
+    G
+}
+
 type Item {
     _id: ID!
     name: String!
@@ -5,7 +12,7 @@ type Item {
     expirationDate: Date
     amount: Int
     location: Location
-    measurementType: String
+    measurementType: MeasurementType
     # categories: [String]!
     almostEmpty: Boolean!
     createdAt: Date
@@ -26,15 +33,51 @@ input ItemInput {
     updatedAt: Date
 }
 
+input UpdateItemInput {
+    _id: ID!
+    name: String
+    description: String
+    expirationDate: Date
+    amount: Int
+    location: Location
+    measurementType: String
+    # categories: [String]
+    almostEmpty: Boolean
+}
+
+input MoveItemsInput {
+    ids: [ID!]!
+    newLocationID: ID!
+}
+
+input ItemQueryOptionsInput {
+    test: Boolean
+}
+
 type ItemOutput {
     item: Item
     query: Query
 }
 
-Query {
+type ItemsOutput {
     items: [Item]!
+    query: Query
 }
 
-Mutation {
-    addItem(item: ItemInput): ItemOutput
+type MoveItemsOutput {
+    updatedItems: [Item]!
+    errorItems: [Item]!
+    query: Query
+}
+
+type Query {
+    getItem(_id: ID!): ItemOutput
+    getItems(queryOptions: ItemQueryOptionsInput): ItemsOutput
+}
+
+type Mutation {
+    addItem(item: ItemInput!): ItemOutput
+    updateItem(item: UpdateItemInput!): ItemOutput
+    removeItem(id: ID!): ItemOutput
+    moveItems(items: MoveItemsInput!): MoveItemsOutput
 }
