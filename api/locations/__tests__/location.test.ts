@@ -1,8 +1,11 @@
 import { Error } from "mongoose"
 
-import * as dbHandler from "~lib/test_db_handler"
-import LocationModel from "~graphql/locations/locations"
+import * as dbHandler from "~lib/test/test_db_handler"
+import LocationModel from "api/locations/locations"
 
+/**
+ * @jest-environment node
+ */
 describe("Location Model Suite - Mongoose ", () => {
     const { ValidationError } = Error
 

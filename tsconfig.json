@@ -4,7 +4,7 @@
         "baseUrl": ".",
         "paths": {
             "~components/*": ["components/*"], // this is only for VSC type checking, actual settings in next.config.js
-            "~graphql/*": ["graphql/*"],
+            "~api/*": ["api/*"],
             "~lib/*": ["lib/*"]
         },
         "lib": ["dom", "dom.iterable", "esnext"],

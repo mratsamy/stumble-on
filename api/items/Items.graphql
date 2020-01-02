@@ -3,6 +3,7 @@ enum MeasurementType {
     FL_OZ
     ML
     G
+    NONE
 }
 
 type Item {
@@ -11,6 +12,7 @@ type Item {
     description: String!
     expirationDate: Date
     amount: Int
+    count: Int
     location: Location
     measurementType: MeasurementType
     # categories: [String]!
@@ -25,7 +27,7 @@ input ItemInput {
     description: String!
     expirationDate: Date
     amount: Int
-    location: Location
+    locationID: ID
     measurementType: String
     # categories: [String]!
     almostEmpty: Boolean!
@@ -39,7 +41,8 @@ input UpdateItemInput {
     description: String
     expirationDate: Date
     amount: Int
-    location: Location
+    locationID: ID
+    count: Int
     measurementType: String
     # categories: [String]
     almostEmpty: Boolean
@@ -56,6 +59,7 @@ input ItemQueryOptionsInput {
 
 type ItemOutput {
     item: Item
+
     query: Query
 }
 
@@ -65,8 +69,8 @@ type ItemsOutput {
 }
 
 type MoveItemsOutput {
-    updatedItems: [Item]!
-    errorItems: [Item]!
+    updatedItems: [ID]!
+    errorItems: [ID]!
     query: Query
 }
 

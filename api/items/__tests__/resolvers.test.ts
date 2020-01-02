@@ -1,6 +1,9 @@
-import * as dbHandler from "~lib/test_db_handler"
-import ItemModel from "~graphql/items/items"
+import * as dbHandler from "~lib/test/test_db_handler"
+import ItemModel from "~api/items/items"
 
+/**
+ * @jest-environment node
+ */
 describe("Item Resolver Suite", () => {
     beforeAll(async () => await dbHandler.connect())
 

@@ -23,6 +23,14 @@ input UpdateLocationInput {
     description: String
 }
 
+input LocationQueryOptionsInput {
+    wip: Boolean
+}
+
+input UpdateLocationsInput {
+    WIP: Boolean
+}
+
 type LocationOutput {
     location: Location
     query: Query

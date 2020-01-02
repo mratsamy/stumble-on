@@ -1,11 +1,11 @@
 import { mergeResolvers } from "graphql-toolkit"
-import { GraphQLScalarType } from "graphql"
-import { Kind } from "graphql/language"
+import { GraphQLScalarType } from "~api"
+import { Kind } from "~api/language"
 
-import { ItemMutations } from "~graphql/items/mutations"
-import { ItemResolvers } from "~graphql/items/resolvers"
-import { LocationMutations } from "~graphql/locations/mutations"
-import { LocationResolvers } from "~graphql/locations/resolvers"
+import { ItemMutations } from "~api/items/mutations"
+import { ItemResolvers } from "~api/items/resolvers"
+import { LocationMutations } from "~api/locations/mutations"
+import { LocationResolvers } from "~api/locations/resolvers"
 
 const baseScalarType = {
     Date: new GraphQLScalarType({

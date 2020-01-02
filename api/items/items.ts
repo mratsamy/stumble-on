@@ -3,6 +3,7 @@ import mongoose, { Schema } from "mongoose"
 enum MeasurementType {
     OZ,
     FL_OZ,
+    NONE,
     ML,
     G,
 }
@@ -31,7 +32,7 @@ export const ItemsSchema = new Schema(
             required: true,
             min: [0, "Can't have negative amounts"],
         },
-        location: {
+        locationID: {
             type: mongoose.Schema.Types.ObjectId,
             index: true,
         },
@@ -45,7 +46,10 @@ export const ItemsSchema = new Schema(
                 },
             },
         },
-        almostEmpty: Boolean,
+        almostEmpty: {
+            type: Boolean,
+            required: true,
+        },
     },
     { timestamps: true }
 )

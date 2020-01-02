@@ -1,4 +1,22 @@
-import mongoose, { Schema, SchemaDefinition } from "mongoose"
+import mongoose, { Schema } from "mongoose"
+
+export interface ILocation {
+    _id?: String
+    name: String
+    description: String
+    parent?: String
+    createdAt?: String
+    updatedAt?: String
+}
+
+export type LocationType = {
+    _id: String
+    name: String
+    description: String
+    parent?: String
+    createdAt: String
+    updatedAt: String
+}
 
 export const LocationsSchema = new Schema(
     {

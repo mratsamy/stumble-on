@@ -8,4 +8,5 @@ module.exports = {
         "\\.(graphql|gql)$": "jest-transform-graphql",
         ".*": "babel-jest",
     },
+    testEnvironment: "node",
 }

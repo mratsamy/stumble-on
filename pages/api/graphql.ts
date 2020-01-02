@@ -1,4 +1,4 @@
-import ApolloServer from "~graphql/apolloServer"
+import ApolloServer from "~api/graphql"
 import connectDb from "~lib/mongoose"
 
 export const config = {
