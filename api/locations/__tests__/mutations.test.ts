@@ -16,13 +16,14 @@ describe("Location Mutation Suite", () => {
         const addLocationMutation = `
             mutation addLocationMutation($input: LocationInput!) {
                 addLocation(location: $input) {
-                    _id: ID!
-                    name: String!
-                    description: String!
-                    parent: String
-                    subLocations: [Location]!
-                    createdAt: Date
-                    updatedAt: Date
+                    location {
+                        _id
+                        name
+                        description
+                        parent
+                        createdAt
+                        updatedAt
+                    }
                 }
             }
         `
@@ -35,21 +36,27 @@ describe("Location Mutation Suite", () => {
             }
 
             const response = await graphqlTestCall(addLocationMutation, {
+                input,
+            })
+
+            const { data: { addLocation: { location = {} } = {} } = {} } = response
+            expect(location._id).toBeDefined()
+            expect(location.name).toBe(input.name)
+            expect(location.description).toBe(input.description)
+            expect(location.createdAt).toBeDefined()
+            expect(location.updatedAt).toBeDefined()
+        })
+
+        it("should NOT create a new location without the required fields", async () => {
+            const response = await graphqlTestCall(addLocationMutation, {
                 input: {
-                    ...input,
+                    description: "i don't have a name",
                 },
             })
 
-            const { data: { addLocation: { item = {} } = {} } = {} } = response
-            console.log(response)
-            expect(item._id).toBeDefined()
-            expect(item.name).toBe(input.name)
-            expect(item.description).toBe(input.description)
-            expect(item.createdAt).toBeDefined()
-            expect(item.updatedAt).toBeDefined()
+            expect(response.data).toBeUndefined()
+            expect(response.errors.length).toBeGreaterThan(0)
         })
-
-        it("should NOT create a new location without the required fields", async () => {})
     })
 
     describe("updateLocation", () => {
