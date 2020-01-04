@@ -5,14 +5,9 @@ import { UserInputError } from "apollo-server-micro"
 export const ItemMutations = {
     Mutation: {
         async addItem(object, { item }, context, info) {
-            const defaults = {
-                count: 0,
-                amount: 0,
-            }
-
             try {
                 const newItem = await ItemModel.create({
-                    ...Object.assign({}, defaults, item),
+                    ...item,
                 })
 
                 return { item: newItem }
@@ -63,8 +58,6 @@ export const ItemMutations = {
                     throw new UserInputError("Invalid location id.")
                 })
 
-            console.log(locationInstance)
-
             await Promise.all(
                 ids.map((id) => {
                     return ItemModel.findByIdAndUpdate(id, { locationID: newLocationID })
@@ -77,9 +70,6 @@ export const ItemMutations = {
             )
 
             return { updatedItems, errorItems }
-
-            try {
-            } catch (e) {}
         },
     },
 }

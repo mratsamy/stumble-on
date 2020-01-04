@@ -26,7 +26,8 @@ input ItemInput {
     name: String!
     description: String!
     expirationDate: Date
-    amount: Int
+    amount: Int = 0
+    count: Int = 0
     locationID: ID
     measurementType: String
     # categories: [String]!
@@ -54,7 +55,7 @@ input MoveItemsInput {
 }
 
 input ItemQueryOptionsInput {
-    test: Boolean
+    limit: Int = 10
 }
 
 type ItemOutput {
@@ -75,7 +76,7 @@ type MoveItemsOutput {
 }
 
 type Query {
-    getItem(_id: ID!): ItemOutput
+    getItem(id: ID!): ItemOutput
     getItems(queryOptions: ItemQueryOptionsInput): ItemsOutput
 }
 

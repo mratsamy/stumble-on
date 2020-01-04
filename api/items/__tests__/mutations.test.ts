@@ -1,6 +1,6 @@
 import * as dbHandler from "~lib/test/test_db_handler"
 import { graphqlTestCall } from "~lib/test/graphql_test_server"
-import ItemModel from "~api/items/items"
+import ItemModel, { IItemsModel } from "~api/items/items"
 import LocationModel from "~api/locations/locations"
 
 /**
@@ -94,7 +94,7 @@ describe("Item Mutation Suite", () => {
         }
         `
 
-        let modelInstance
+        let modelInstance: IItemsModel
 
         beforeEach(async () => {
             modelInstance = await ItemModel.create({
@@ -172,7 +172,7 @@ describe("Item Mutation Suite", () => {
         }
         `
 
-        let modelInstance
+        let modelInstance: IItemsModel
 
         beforeEach(async () => {
             modelInstance = await ItemModel.create({
@@ -201,73 +201,66 @@ describe("Item Mutation Suite", () => {
         })
     })
 
-    // describe("moveItems", () => {
-    //     const moveItemsMutation = `
-    //         mutation moveItemsMutation($items: MoveItemsInput!) {
-    //             moveItems(items: $items) {
-    //                 updatedItems {
-    //                     _id
-    //                 }
-    //                 errorItems {
-    //                     _id
-    //                 }
-    //             }
-    //         }
-    //     `
+    describe("moveItems", () => {
+        const moveItemsMutation = `
+            mutation moveItemsMutation($items: MoveItemsInput!) {
+                moveItems(items: $items) {
+                    updatedItems
+                    errorItems
+                }
+            }
+        `
 
-    //     const modelInstances = []
-    //     let secondLocation
+        const modelInstances = []
+        let secondLocation
 
-    //     beforeAll(async () => {
-    //         secondLocation = await LocationModel.create({
-    //             name: "Second location",
-    //             description: "I'm a second location",
-    //         })
-    //     })
+        beforeAll(async () => {
+            secondLocation = await LocationModel.create({
+                name: "Second location",
+                description: "I'm a second location",
+            }).catch((error) => console.log(error))
+        })
 
-    //     beforeEach(async () => {
-    //         console.log("starting")
-    //         await Promise.all(
-    //             "12345".split("").map((itemId) => {
-    //                 return ItemModel.create({
-    //                     name: `Item #${itemId}`,
-    //                     description: "Im an item",
-    //                     count: 1,
-    //                     locationId: "location-id-1",
-    //                     amount: 16,
-    //                     measurementType: "OZ",
-    //                     almostEmpty: false,
-    //                 })
-    //             })
-    //         ).then((values) => {
-    //             values.forEach((item) => modelInstances.push(item))
-    //         })
-    //     })
+        beforeEach(async () => {
+            await Promise.all(
+                "12345".split("").map((itemId) => {
+                    return ItemModel.create({
+                        name: `Item #${itemId}`,
+                        description: "Im an item",
+                        count: 1,
+                        locationId: "location-id-1",
+                        amount: 16,
+                        measurementType: "OZ",
+                        almostEmpty: false,
+                    })
+                })
+            )
+                .then((values) => {
+                    values.forEach((item) => modelInstances.push(item))
+                })
+                .catch((error) => console.log(error))
+        })
 
-    //     afterEach(async () => {
-    //         await dbHandler.clearDatabase()
-    //         while (modelInstances.length) {
-    //             modelInstances.push()
-    //         }
-    //     })
+        afterEach(async () => {
+            modelInstances.splice(0, modelInstances.length)
+            await dbHandler.clearDatabase().catch((error) => console.log(error))
+        })
 
-    //     it("should successfully update the items' ids to the new location", async () => {
-    //         console.log("secondLocation", secondLocation)
-    //         const response = await graphqlTestCall(moveItemsMutation, {
-    //             items: {
-    //                 ids: modelInstances.map((item) => item._id.toString()),
-    //                 newLocationID: secondLocation._id.toString(),
-    //             },
-    //         })
-    //         console.log(1, response)
+        it("should successfully update the items' ids to the new location", async () => {
+            const response = await graphqlTestCall(moveItemsMutation, {
+                items: {
+                    ids: modelInstances.map((item) => item._id.toString()),
+                    newLocationID: secondLocation._id.toString(),
+                },
+            })
 
-    //         const {
-    //             data: { moveItems: { updatedItems = undefined, errorItems = undefined } = {} },
-    //         } = response
+            const {
+                data: { moveItems: { updatedItems = undefined, errorItems = undefined } = {} },
+            } = response
 
-    //         expect(updatedItems).toHaveLength(modelInstances.length)
-    //         expect(errorItems).toBeDefined()
-    //         expect(errorItems).toHaveLength(0)
-    //     })
-    // })
+            expect(updatedItems).toHaveLength(modelInstances.length)
+            expect(errorItems).toBeDefined()
+            expect(errorItems).toHaveLength(0)
+        })
+    })
 })

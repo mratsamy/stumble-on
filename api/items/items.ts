@@ -1,6 +1,7 @@
-import mongoose, { Schema } from "mongoose"
+import { Schema, Document, Model, model } from "mongoose"
+import { IItem } from "~api/interfaces/item"
 
-enum MeasurementType {
+export enum MeasurementType {
     OZ,
     FL_OZ,
     NONE,
@@ -8,7 +9,9 @@ enum MeasurementType {
     G,
 }
 
-export const ItemsSchema = new Schema(
+export interface IItemsModel extends Document, IItem, timestamps {}
+
+const ItemsSchema = new Schema(
     {
         name: {
             type: String,
@@ -33,7 +36,7 @@ export const ItemsSchema = new Schema(
             min: [0, "Can't have negative amounts"],
         },
         locationID: {
-            type: mongoose.Schema.Types.ObjectId,
+            type: Schema.Types.ObjectId,
             index: true,
         },
         measurementType: {
@@ -54,4 +57,6 @@ export const ItemsSchema = new Schema(
     { timestamps: true }
 )
 
-export default mongoose.models.items || mongoose.model("items", ItemsSchema)
+const Item: Model<IItemsModel> = model<IItemsModel>("Items", ItemsSchema)
+
+export default Item

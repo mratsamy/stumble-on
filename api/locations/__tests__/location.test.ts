@@ -1,7 +1,7 @@
 import { Error } from "mongoose"
 
 import * as dbHandler from "~lib/test/test_db_handler"
-import LocationModel from "api/locations/locations"
+import LocationModel from "~api/locations/locations"
 
 /**
  * @jest-environment node

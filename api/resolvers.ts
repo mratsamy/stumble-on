@@ -1,6 +1,6 @@
 import { mergeResolvers } from "graphql-toolkit"
-import { GraphQLScalarType } from "~api"
-import { Kind } from "~api/language"
+import { GraphQLScalarType } from "graphql"
+import { Kind } from "graphql/language"
 
 import { ItemMutations } from "~api/items/mutations"
 import { ItemResolvers } from "~api/items/resolvers"

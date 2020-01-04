@@ -1,3 +1,8 @@
 export const LocationMutations = {
-    Mutation: {},
+    Mutation: {
+        addLocation(parent, args, context, info) {
+            const { location } = args
+            console.log(location)
+        },
+    },
 }

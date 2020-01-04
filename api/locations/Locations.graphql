@@ -11,7 +11,7 @@ type Location {
 input LocationInput {
     _id: ID
     name: String!
-    subLocationDepth: Int
+    subLocationDepth: Int = 0
     parent: String
     description: String!
 }
@@ -31,6 +31,10 @@ input UpdateLocationsInput {
     WIP: Boolean
 }
 
+input SubLocationInput {
+    WIP: Boolean
+}
+
 type LocationOutput {
     location: Location
     query: Query
@@ -42,7 +46,8 @@ type LocationsOutput {
 }
 
 type Query {
-    getLocation(_id: ID!): LocationOutput
+    getLocation(id: ID!): LocationOutput
+    getSubLocations(queryOptions: SubLocationInput): LocationsOutput
     getLocations(queryOptions: LocationQueryOptionsInput): LocationsOutput
 }
 

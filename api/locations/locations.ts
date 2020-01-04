@@ -1,22 +1,7 @@
-import mongoose, { Schema } from "mongoose"
+import { Schema, Document, Model, model } from "mongoose"
+import { ILocation } from "~api/interfaces/location"
 
-export interface ILocation {
-    _id?: String
-    name: String
-    description: String
-    parent?: String
-    createdAt?: String
-    updatedAt?: String
-}
-
-export type LocationType = {
-    _id: String
-    name: String
-    description: String
-    parent?: String
-    createdAt: String
-    updatedAt: String
-}
+export interface ILocationModel extends ILocation, Document, timestamps {}
 
 export const LocationsSchema = new Schema(
     {
@@ -36,4 +21,6 @@ export const LocationsSchema = new Schema(
     { timestamps: true }
 )
 
-export default mongoose.models.items || mongoose.model("locations", LocationsSchema)
+const Location: Model<ILocationModel> = model<ILocationModel>("Locations", LocationsSchema)
+
+export default Location
