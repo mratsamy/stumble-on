@@ -1,9 +1,19 @@
-mongodb:
-    image: mongodb:4.2.2-bionic
-    environment: MONGO_INITDB_ROOT_USERNAME="app_user"
-        MONGO_INITDB_ROOT_PASSWORD="gCG1Zmr6c9x!"
-    ports:
-        - "27017:27017"
-    volumes:
-        - "db_data:/data/db"
-    command: mongod
+version: "3"
+services:
+    mongodb:
+        image: mongodb:4.2.2-bionic
+        environment: MONGO_INITDB_ROOT_USERNAME="app_user"
+            MONGO_INITDB_ROOT_PASSWORD="gCG1Zmr6c9x!"
+        ports:
+            - "27017:27017"
+        volumes:
+            - "db_data:/data/db"
+        command: mongod
+    nextjs:
+        build:
+            context: ./dockerfiles
+            dockerfile: nextjs.dockerfile
+        ports:
+            - "3000:3000"
+        links:
+            - mongodb

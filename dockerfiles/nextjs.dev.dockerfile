@@ -1,6 +1,6 @@
 FROM node:12.14.0-alpine3.11
 
-ENV NODE_ENV production
+ENV NODE_ENV development
 ENV PORT 3000
 
 # create app dir
@@ -9,7 +9,7 @@ WORKDIR /usr/src/app
 
 # install dependancies
 COPY ../package*.json /usr/src/app
-RUN npm install --production
+RUN npm install
 
 # copy the app
 COPY ../ /usr/src/app
@@ -17,4 +17,4 @@ COPY ../ /usr/src/app
 RUN npm run build
 EXPOSE 3000
 
-CMD ["npm", "start"]
+CMD ["npm", "run", "dev"]
