@@ -9,7 +9,7 @@ export enum MeasurementType {
     G,
 }
 
-export interface IItemsModel extends Document, IItem, timestamps {}
+export interface IItemModel extends Document, IItem, timestamps {}
 
 const ItemsSchema = new Schema(
     {
@@ -57,6 +57,6 @@ const ItemsSchema = new Schema(
     { timestamps: true }
 )
 
-const Item: Model<IItemsModel> = model<IItemsModel>("Items", ItemsSchema)
+const Item: Model<IItemModel> = model<IItemModel>("Items", ItemsSchema)
 
 export default Item

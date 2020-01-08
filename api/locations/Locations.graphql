@@ -2,7 +2,7 @@ type Location {
     _id: ID!
     name: String!
     description: String!
-    parent: String
+    parent: ID
     subLocations: [Location]!
     createdAt: Date
     updatedAt: Date
@@ -12,14 +12,15 @@ input LocationInput {
     _id: ID
     name: String!
     subLocationDepth: Int = 0
-    parent: String
+    parent: ID
     description: String!
 }
 
 input UpdateLocationInput {
     _id: ID!
     name: String
-    parent: String
+    parent: ID
+    subLocationDepth: Int = 0
     description: String
 }
 
@@ -28,7 +29,8 @@ input LocationQueryOptionsInput {
 }
 
 input UpdateLocationsInput {
-    WIP: Boolean
+    locations: [ID!]!
+    parent: ID!
 }
 
 input SubLocationInput {
@@ -54,6 +56,6 @@ type Query {
 type Mutation {
     addLocation(location: LocationInput!): LocationOutput
     updateLocation(location: UpdateLocationInput!): LocationOutput
-    removeLocation(location: UpdateLocationInput!): LocationOutput
+    removeLocation(id: ID!): LocationOutput
     updateLocations(locations: UpdateLocationsInput!): LocationsOutput
 }

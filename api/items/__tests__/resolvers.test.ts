@@ -1,5 +1,5 @@
 import * as dbHandler from "~lib/test/test_db_handler"
-import ItemModel, { IItemsModel } from "~api/items/items"
+import ItemModel, { IItemModel } from "~api/items/items"
 import { IItem } from "~api/interfaces/item"
 import { graphqlTestCall } from "~lib/test/graphql_test_server"
 
@@ -7,7 +7,7 @@ import { graphqlTestCall } from "~lib/test/graphql_test_server"
  * @jest-environment node
  */
 describe("Item Resolver Suite", () => {
-    const createItems = (count: number): Promise<IItemsModel[]> => {
+    const createItems = (count: number): Promise<IItemModel[]> => {
         if (count < 0) return
 
         return Promise.all(
@@ -31,7 +31,7 @@ describe("Item Resolver Suite", () => {
     afterAll(async () => await dbHandler.closeDatabase())
 
     it("should retrieve an item", async () => {
-        const items: Array<IItemsModel> = await createItems(1)
+        const items: Array<IItemModel> = await createItems(1)
         const itemInstance = items.shift()
 
         const GetItemQuery = `
