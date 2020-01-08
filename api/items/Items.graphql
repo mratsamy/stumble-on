@@ -1,0 +1,88 @@
+enum MeasurementType {
+    OZ
+    FL_OZ
+    ML
+    G
+    NONE
+}
+
+type Item {
+    _id: ID!
+    name: String!
+    description: String!
+    expirationDate: Date
+    amount: Int
+    count: Int
+    location: Location
+    measurementType: MeasurementType
+    # categories: [String]!
+    almostEmpty: Boolean!
+    createdAt: Date
+    updatedAt: Date
+}
+
+input ItemInput {
+    _id: ID
+    name: String!
+    description: String!
+    expirationDate: Date
+    amount: Int = 0
+    count: Int = 0
+    locationID: ID
+    measurementType: String
+    # categories: [String]!
+    almostEmpty: Boolean!
+    createdAt: Date
+    updatedAt: Date
+}
+
+input UpdateItemInput {
+    _id: ID!
+    name: String
+    description: String
+    expirationDate: Date
+    amount: Int
+    locationID: ID
+    count: Int
+    measurementType: String
+    # categories: [String]
+    almostEmpty: Boolean
+}
+
+input MoveItemsInput {
+    ids: [ID!]!
+    newLocationID: ID!
+}
+
+input ItemQueryOptionsInput {
+    limit: Int = 10
+}
+
+type ItemOutput {
+    item: Item
+
+    query: Query
+}
+
+type ItemsOutput {
+    items: [Item]!
+    query: Query
+}
+
+type MoveItemsOutput {
+    updatedItems: [ID]!
+    errorItems: [ID]!
+    query: Query
+}
+
+type Query {
+    getItem(id: ID!): ItemOutput
+    getItems(queryOptions: ItemQueryOptionsInput): ItemsOutput
+}
+
+type Mutation {
+    addItem(item: ItemInput!): ItemOutput
+    updateItem(item: UpdateItemInput!): ItemOutput
+    removeItem(id: ID!): ItemOutput
+    moveItems(items: MoveItemsInput!): MoveItemsOutput
+}

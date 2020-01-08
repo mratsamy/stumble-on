@@ -1,0 +1,61 @@
+type Location {
+    _id: ID!
+    name: String!
+    description: String!
+    parent: ID
+    subLocations: [Location]!
+    createdAt: Date
+    updatedAt: Date
+}
+
+input LocationInput {
+    _id: ID
+    name: String!
+    subLocationDepth: Int = 0
+    parent: ID
+    description: String!
+}
+
+input UpdateLocationInput {
+    _id: ID!
+    name: String
+    parent: ID
+    subLocationDepth: Int = 0
+    description: String
+}
+
+input LocationQueryOptionsInput {
+    wip: Boolean
+}
+
+input UpdateLocationsInput {
+    locations: [ID!]!
+    parent: ID!
+}
+
+input SubLocationInput {
+    WIP: Boolean
+}
+
+type LocationOutput {
+    location: Location
+    query: Query
+}
+
+type LocationsOutput {
+    locations: [Location]!
+    query: Query
+}
+
+type Query {
+    getLocation(id: ID!): LocationOutput
+    getSubLocations(queryOptions: SubLocationInput): LocationsOutput
+    getLocations(queryOptions: LocationQueryOptionsInput): LocationsOutput
+}
+
+type Mutation {
+    addLocation(location: LocationInput!): LocationOutput
+    updateLocation(location: UpdateLocationInput!): LocationOutput
+    removeLocation(id: ID!): LocationOutput
+    updateLocations(locations: UpdateLocationsInput!): LocationsOutput
+}

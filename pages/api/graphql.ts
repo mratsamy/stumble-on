@@ -1,4 +1,5 @@
-import ApolloServer from "~graphql/apolloServer"
+import ApolloServer from "~api/graphql"
+import connectDb from "~lib/mongoose"
 
 export const config = {
     api: {
@@ -6,4 +7,5 @@ export const config = {
     },
 }
 
-export default ApolloServer.createHandler({ path: "/api/graphql" })
+const server = ApolloServer.createHandler({ path: "/api/graphql" })
+export default connectDb(server)

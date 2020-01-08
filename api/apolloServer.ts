@@ -1,8 +1,8 @@
 import { NextApiRequest } from "next"
 import { ApolloServer, AuthenticationError } from "apollo-server-micro"
 
-import typeDefs from "~graphql/typeDefs"
-import resolvers from "~graphql/resolvers"
+import typeDefs from "~api/typeDefs"
+import resolvers from "~api/resolvers"
 
 // this section does
 const context = ({ request }: { request: NextApiRequest }) => {

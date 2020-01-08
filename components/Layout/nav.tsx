@@ -1,20 +1,6 @@
 import React from "react"
 import Link from "next/link"
 
-interface ILinkMeta {
-    href: string
-    label: string
-    key?: string
-}
-
-const links: Array<ILinkMeta> = [
-    { href: "https://zeit.co/now", label: "ZEIT" },
-    { href: "https://github.com/zeit/next.js", label: "GitHub" },
-].map((link: ILinkMeta) => {
-    link.key = `nav-link-${link.href}-${link.label}`
-    return link
-})
-
 const Nav = () => (
     <nav>
         <ul>
@@ -23,11 +9,11 @@ const Nav = () => (
                     <a>Home</a>
                 </Link>
             </li>
-            {links.map(({ key, href, label }) => (
-                <li key={key}>
-                    <a href={href}>{label}</a>
-                </li>
-            ))}
+            <li>
+                <Link href="/second">
+                    <a>Second</a>
+                </Link>
+            </li>
         </ul>
 
         <style jsx>{`
