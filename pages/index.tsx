@@ -19,7 +19,7 @@ const Home = () => {
     return (
         <Layout title="Home">
             <div className="hero">
-                <h1 className="title">Level up your life</h1>
+                <h1 className="title">Level up your life!</h1>
             </div>
 
             <style jsx>{`
