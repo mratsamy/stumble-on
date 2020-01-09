@@ -4,17 +4,16 @@ ENV NODE_ENV development
 ENV PORT 3000
 
 # create app dir
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
+RUN mkdir -p /usr/src/app/
+WORKDIR /usr/src/app/
 
 # install dependancies
-COPY ../package*.json /usr/src/app
+COPY package*.json /usr/src/app/
 RUN npm install
 
 # copy the app
-COPY ../ /usr/src/app
+COPY . /usr/src/app/
 
-RUN npm run build
 EXPOSE 3000
 
 CMD ["npm", "run", "dev"]

@@ -1,0 +1,12 @@
+version: "3"
+services:
+    nextjs:
+        build:
+            context: .
+            dockerfile: ./dockerfiles/nextjs.dev.dockerfile
+        ports:
+            - "3000:3000"
+        links:
+            - mongodb
+        volumes:
+            - ./:/usr/src/app

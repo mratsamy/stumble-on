@@ -8,11 +8,11 @@ RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
 # install dependancies
-COPY ../package*.json /usr/src/app
+COPY package*.json /usr/src/app
 RUN npm install --production
 
 # copy the app
-COPY ../ /usr/src/app
+COPY . /usr/src/app
 
 RUN npm run build
 EXPOSE 3000
