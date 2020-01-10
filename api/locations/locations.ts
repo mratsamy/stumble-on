@@ -1,4 +1,4 @@
-import { Schema, Document, Model, model } from "mongoose"
+import { Schema, Document, Model, model, models } from "mongoose"
 import { ILocation } from "~api/interfaces/location"
 
 export interface ILocationModel extends ILocation, Document, timestamps {}
@@ -21,6 +21,4 @@ export const LocationsSchema = new Schema(
     { timestamps: true }
 )
 
-const Location: Model<ILocationModel> = model<ILocationModel>("Locations", LocationsSchema)
-
-export default Location
+export default models.Locations || model<ILocationModel>("Locations", LocationsSchema)

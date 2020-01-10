@@ -6,7 +6,7 @@ services:
             dockerfile: ./dockerfiles/nextjs.dev.dockerfile
         ports:
             - "3000:3000"
-        links:
-            - mongodb
         volumes:
             - ./:/usr/src/app
+        environment:
+            - MONGO_URL=mongodb://mongodb:27017/stumble_on

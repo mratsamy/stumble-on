@@ -4,9 +4,9 @@ const webpack = require("webpack")
 
 module.exports = {
     webpack(config, options) {
-        config.resolve.alias["~components"] = path.join(__dirname, "components")
-        config.resolve.alias["~api"] = path.join(__dirname, "api")
-        config.resolve.alias["~lib"] = path.join(__dirname, "lib")
+        config.resolve.alias["~components"] = path.resolve(__dirname, "components")
+        config.resolve.alias["~api"] = path.resolve(__dirname, "api")
+        config.resolve.alias["~lib"] = path.resolve(__dirname, "lib")
 
         config.plugins.push(new webpack.NodeEnvironmentPlugin(localEnv))
 
