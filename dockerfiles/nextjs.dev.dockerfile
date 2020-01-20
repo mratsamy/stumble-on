@@ -14,6 +14,4 @@ RUN npm install
 # copy the app
 COPY . /usr/src/app/
 
-EXPOSE 3000
-
 CMD ["npm", "run", "dev"]
