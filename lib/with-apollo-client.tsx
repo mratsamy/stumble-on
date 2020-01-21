@@ -4,10 +4,12 @@ import Head from "next/head"
 import { getDataFromTree } from "@apollo/react-ssr"
 import { getMarkupFromTree } from "react-apollo-hooks"
 import { renderToString } from "react-dom/server"
+import ApolloClient from "apollo-client"
+import { NormalizedCacheObject } from "apollo-cache-inmemory"
 
 export default (App) => {
     return class Apollo extends React.Component {
-        protected apolloClient
+        protected apolloClient?: ApolloClient<NormalizedCacheObject>
 
         static displayName = "withApollo(App)"
         static async getInitialProps(ctx) {

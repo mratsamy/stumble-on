@@ -1,12 +1,14 @@
 import React from "react"
 
-import Layout from "~components/Layout"
+import Layout from "~components/layout"
 
 const Home = () => {
     return (
         <Layout title="Home">
             <div className="hero">
                 <h1 className="title">Level up your life!</h1>
+                <p>I am some styled p</p>
+                random text
             </div>
 
             <style jsx>{`

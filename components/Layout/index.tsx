@@ -1,7 +1,7 @@
 import React from "react"
 import Head from "next/head"
 
-import Nav from "~components/Layout/nav"
+import Nav from "~components/layout/nav"
 
 type Props = {
     title?: string
