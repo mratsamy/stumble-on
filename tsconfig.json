@@ -21,5 +21,6 @@
         "jsx": "preserve"
     },
     "exclude": ["node_modules"],
-    "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "api/test.js"]
+    "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "api/test.js"],
+    "files": ["types/custom.d.ts"]
 }

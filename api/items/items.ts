@@ -1,4 +1,4 @@
-import { Schema, Document, Model, model } from "mongoose"
+import { Schema, Document, Model, model, models } from "mongoose"
 import { IItem } from "~api/interfaces/item"
 
 export enum MeasurementType {
@@ -57,6 +57,4 @@ const ItemsSchema = new Schema(
     { timestamps: true }
 )
 
-const Item: Model<IItemModel> = model<IItemModel>("Items", ItemsSchema)
-
-export default Item
+export default models.Items || model<IItemModel>("Items", ItemsSchema)
