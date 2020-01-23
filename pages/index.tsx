@@ -1,10 +1,11 @@
 import React from "react"
 
-import Layout from "~components/layout"
+import Layout, { Nav } from "~components/layout"
 
 const Home = () => {
     return (
         <Layout title="Home">
+            <Nav />
             <div className="hero">
                 <h1 className="title">Level up your life!</h1>
                 <p>I am some styled p</p>
