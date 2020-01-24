@@ -1,0 +1,7 @@
+label {
+    font-weight: 400;
+}
+
+input:focus {
+    font-weight: 700;
+}

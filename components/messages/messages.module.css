@@ -1,0 +1,21 @@
+.messages.error {
+    background-color: lightcoral;
+
+    color: red;
+    border-radius: 2px;
+    border: 1px solid red;
+}
+
+.messages.warning {
+    background-color: lightcoral;
+    color: red;
+    border-radius: 2px;
+    border: 1px solid red;
+}
+
+.messages.success {
+    background-color: lightcoral;
+    color: red;
+    border-radius: 2px;
+    border: 1px solid red;
+}
