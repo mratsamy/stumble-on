@@ -11,9 +11,10 @@ type UserOutput {
 
 type Query {
     getUser(id: ID!): UserOutput
+    signIn(email: String!, password: String!): UserOutput
+    signOut(): null
 }
 
 type Mutation {
-    signIn(email: String!, password: String!): UserOutput
-    signOut(): null
+    updatePassword(newPassword: String!): UserOutput
 }
