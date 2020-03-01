@@ -1,4 +1,5 @@
-import { Schema, Document, Model, model, models } from "mongoose"
+import { Schema, Document, model, models } from "mongoose"
+
 import { IItem } from "~api/interfaces/item"
 
 export enum MeasurementType {

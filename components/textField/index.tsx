@@ -12,7 +12,7 @@ type Props = {
     name?: string | false
 }
 
-const Input = forwardRef((props: Props, ref: React.MutableRefObject<any>) => {
+const Input = forwardRef((props: Props, ref?: React.MutableRefObject<any>) => {
     const { type, id, label, isValid = true, placeholder = "", name = false, focusOnRender = false } = props
 
     const elementName = name || id

@@ -1,0 +1,19 @@
+type User {
+    _id: ID!
+    email: String!
+    displayName: String
+}
+
+type UserOutput {
+    user: User
+    query: Query
+}
+
+type Query {
+    getUser(id: ID!): UserOutput
+}
+
+type Mutation {
+    signIn(email: String!, password: String!): UserOutput
+    signOut(): null
+}

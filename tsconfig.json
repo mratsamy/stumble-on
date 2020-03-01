@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-        "target": "es2016",
+        "target": "es2020",
         "baseUrl": ".",
         "paths": {
             "~components/*": ["components/*"], // this is only for VSC type checking, actual settings in next.config.js

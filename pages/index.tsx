@@ -1,6 +1,6 @@
 import React from "react"
 
-import Layout, { Nav } from "~components/layout"
+import Layout, { Nav } from "~components/Layout"
 
 const Home = () => {
     return (

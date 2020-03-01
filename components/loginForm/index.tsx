@@ -4,7 +4,13 @@ import "./form.module.css"
 import TextField from "~components/textField"
 import MessageSection from "~components/messages"
 
-export default function Form({ children }) {
+type Props = {
+    children: React.ReactNode
+    handleSubmit: (event: React.FormEvent<HTMLFormElement & HTMLDivElement>) => void
+    errors: Array<string>
+}
+
+export default function Form({ children, handleSubmit }: Props) {
     const ErrorMessages: Map<string, Set<string>> = new Map()
 
     const [isEmailValid, setIsEmailValid] = useState(true)
@@ -21,38 +27,34 @@ export default function Form({ children }) {
         setIsPasswordValid(false)
     }
 
-    const handleSubmit = (event: React.FormEvent<HTMLDivElement>): void => {
-        event.preventDefault()
-
-        validatePassword()
-        validateEmail()
-    }
-
     return (
         <div className="login-form" onSubmit={handleSubmit}>
             {children}
             <MessageSection messages={ErrorMessages} messageType="error" />
             <form action="post">
-                <TextField
-                    isValid={isEmailValid}
-                    ref={emailRef}
-                    focusOnRender
-                    type="email"
-                    id="email"
-                    label="Email"
-                    placeholder="Email"
-                />
-                <br />
-                <TextField
-                    isValid={isPasswordValid}
-                    ref={passwordRef}
-                    type="password"
-                    id="password"
-                    label="Password"
-                    placeholder="Password"
-                />
-                <br />
-                <button type={"submit"}>Submit</button>
+                <div>
+                    <TextField
+                        isValid={isEmailValid}
+                        ref={emailRef}
+                        focusOnRender
+                        type="email"
+                        id="email"
+                        label="Email"
+                        placeholder="Email"
+                    />
+                </div>
+                <div>
+                    <TextField
+                        isValid={isPasswordValid}
+                        type="password"
+                        id="password"
+                        label="Password"
+                        placeholder="Password"
+                    />
+                </div>
+                <div>
+                    <button type={"submit"}>Submit</button>
+                </div>
             </form>
         </div>
     )

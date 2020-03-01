@@ -4,3 +4,7 @@ declare module "*.graphql" {
     const value: DocumentNode
     export = value
 }
+
+declare namespace API {
+    type token<TokenType> = TokenType | false
+}

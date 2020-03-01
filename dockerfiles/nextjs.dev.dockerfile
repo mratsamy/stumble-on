@@ -2,6 +2,7 @@ FROM node:12.14.0-alpine3.11
 
 ENV NODE_ENV development
 ENV PORT 3000
+ENV MONGO_SECRET "asdfLJKNAFDNJKdgsnjke32"
 
 # create app dir
 RUN mkdir -p /usr/src/app/
